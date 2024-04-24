@@ -1,7 +1,7 @@
 # NOS Frontend Take-home Challenge
 
-[![en](https://img.shields.io/badge/lang-en-green.svg)](https://github.com/pillowpilot/nos_frontend_challenge/blob/master/README.md)
-[![es](https://img.shields.io/badge/lang-es-green.svg)](https://github.com/pillowpilot/nos_frontend_challenge/blob/master/README.es.md)
+[![en](https://img.shields.io/badge/lang-en-green.svg)](https://github.com/pillowpilot/nos_frontend_challenge/blob/main/README.md)
+[![es](https://img.shields.io/badge/lang-es-green.svg)](https://github.com/pillowpilot/nos_frontend_challenge/blob/main/README.es.md)
 
 ## Test locally
 
