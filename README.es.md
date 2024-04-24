@@ -3,7 +3,7 @@
 [![en](https://img.shields.io/badge/lang-en-green.svg)](https://github.com/pillowpilot/nos_frontend_challenge/blob/master/README.md)
 [![es](https://img.shields.io/badge/lang-es-green.svg)](https://github.com/pillowpilot/nos_frontend_challenge/blob/master/README.es.md)
 
-## Probar localment
+## Probar Localmente
 
 Se puede probar el proyecto localmente ejecutando los siguientes comandos:
 
