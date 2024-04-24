@@ -3,6 +3,10 @@
 [![en](https://img.shields.io/badge/lang-en-green.svg)](https://github.com/pillowpilot/nos_frontend_challenge/blob/main/README.md)
 [![es](https://img.shields.io/badge/lang-es-green.svg)](https://github.com/pillowpilot/nos_frontend_challenge/blob/main/README.es.md)
 
+## Online Test
+
+Test the project [here](http://nos-frontend-challenge.s3-website-us-east-1.amazonaws.com/).
+
 ## Test locally
 
 Test the project running the following commands from the root directory:
