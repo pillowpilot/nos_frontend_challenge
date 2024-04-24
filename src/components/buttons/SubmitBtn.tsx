@@ -1,21 +1,10 @@
 import { FC } from "react";
-import { Button } from "@mui/material";
+import { FinalActionBtn } from "./FinalActionBtn";
 
-export const SubmitBtn: FC = () => {
-  return (
-    <Button
-      variant="contained"
-      disableElevation
-      color="primary"
-      sx={{
-        px: 2,
-        py: 1.5,
-        backgroundColor: "#0d4bae",
-        borderRadius: "8px",
-        color: "white",
-      }}
-    >
-      Postularme
-    </Button>
-  );
+interface SubmitBtnProps {
+  onSubmit: () => void;
+}
+
+export const SubmitBtn: FC<SubmitBtnProps> = ({ onSubmit }) => {
+  return <FinalActionBtn label="Postularme" onClick={onSubmit} />;
 };
