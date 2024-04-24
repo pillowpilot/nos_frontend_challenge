@@ -1,35 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Stack } from "@mui/material";
+import { Footer } from "./components/blocks/Footer";
+import { Navbar } from "./components/blocks/Navbar";
+import { WorkWithUs } from "./components/blocks/WorkWithUs";
+import { PersonalDataBlock } from "./components/blocks/personalData/PersonalDataBlock";
+import { WorkExperienceBlock } from "./components/blocks/workExperience/WorkExperienceBlock";
+import { LanguagesBlock } from "./components/blocks/languages/LanguagesBlock";
+import { AttachResumeBlock } from "./components/blocks/AttachResumeBlock";
+import { SubmitBlock } from "./components/blocks/SubmitBlock";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Stack maxWidth={339}>
+      <Navbar />
+      <WorkWithUs />
+      <Stack px={1}>
+        <PersonalDataBlock />
+        <WorkExperienceBlock />
+        <LanguagesBlock />
+        <AttachResumeBlock />
+        <SubmitBlock />
+      </Stack>
+      <Footer />
+    </Stack>
+  );
 }
 
-export default App
+export default App;
