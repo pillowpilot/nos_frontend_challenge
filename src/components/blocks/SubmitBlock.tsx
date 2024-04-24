@@ -2,7 +2,11 @@ import { FC } from "react";
 import { Box } from "@mui/material";
 import { SubmitBtn } from "../buttons/SubmitBtn";
 
-export const SubmitBlock: FC = () => {
+interface SubmitBlockProps {
+  onSubmit: () => void;
+}
+
+export const SubmitBlock: FC<SubmitBlockProps> = ({ onSubmit }) => {
   return (
     <Box
       sx={{
@@ -11,7 +15,7 @@ export const SubmitBlock: FC = () => {
         flexDirection: "column",
       }}
     >
-      <SubmitBtn />
+      <SubmitBtn onSubmit={onSubmit} />
     </Box>
   );
 };
