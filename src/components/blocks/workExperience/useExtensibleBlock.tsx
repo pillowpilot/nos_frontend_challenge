@@ -22,7 +22,7 @@ type BlockProps = DisplayBlockProps | FormBlockProps;
 
 // Helper functions (irrelevant to main logic)
 const extractRandomElement: <T>(options: T[]) => T = (options) => {
-  const randomIndex = Math.floor(Math.random() * (options.length + 1));
+  const randomIndex = Math.floor(Math.random() * options.length);
   return options[randomIndex];
 };
 
