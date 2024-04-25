@@ -15,12 +15,12 @@ import {
  * We also add the `key` field for rendering (to avoid the react unique key per component error)
  */
 type DisplayBlockProps = {
-  tag: "display"; // tag to Algebraic Data Type
+  tag: "display"; // tag for Algebraic Data Type dispatch
   key: number;
 } & WorkExperienceDisplayBlockProps;
 
 type FormBlockProps = {
-  tag: "form"; // tag to Algebraic Data Type
+  tag: "form"; // tag for Algebraic Data Type dispatch
   key: number;
 } & WorkExperienceFormBlockProps;
 
@@ -41,7 +41,7 @@ const generateRandomPosition = () =>
  * Custom hook to handle work experience block extensibility
  *
  * Mantains a list of objects with type signatures extended from the components to render.
- * We add the fields tag for dispatching and key for the rendering process.
+ * We add the fields `tag` for dispatching and `key` for the rendering process.
  *
  * handleAddAction is the on click event handler to update the list of props
  * props is the list of props that should be used for rendering
