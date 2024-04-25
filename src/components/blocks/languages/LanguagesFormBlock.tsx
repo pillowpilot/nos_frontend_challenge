@@ -3,7 +3,9 @@ import { FC } from "react";
 import { CustomSelect } from "../../selects/CustomSelect";
 import { InputBlock } from "../InputBlock";
 
-export const LanguagesFormBlock: FC = () => {
+export type LanguagesFormBlockProps = Record<string, never>;
+
+export const LanguagesFormBlock: FC<LanguagesFormBlockProps> = () => {
   return (
     <Box
       sx={{

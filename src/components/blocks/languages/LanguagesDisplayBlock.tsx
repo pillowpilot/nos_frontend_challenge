@@ -23,7 +23,7 @@ const RowWrapper: FC<RowWrapperProps> = ({ children }) => {
   );
 };
 
-interface LanguagesDisplayBlockProps {
+export type LanguagesDisplayBlockProps = {
   language: string;
   level: string;
   onRemove: () => void;
