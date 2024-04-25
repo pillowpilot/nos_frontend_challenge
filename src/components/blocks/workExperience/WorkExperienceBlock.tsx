@@ -1,12 +1,10 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { Stack, Typography } from "@mui/material";
-import { WorkExperienceFormBlock } from "./WorkExperienceFormBlock";
-import { WorkExperienceDisplayBlock } from "./WorkExperienceDisplayBlock";
 import { AddBtn } from "../../buttons/AddBtn";
+import { useExtensibleBlock } from "./useExtensibleBlock";
 
 export const WorkExperienceBlock: FC = () => {
-  const [displayWorkExperienceData, setDisplayWorkExperienceData] =
-    useState<boolean>(false);
+  const { handleAddAction, renderBlocks } = useExtensibleBlock();
 
   return (
     <Stack
@@ -21,24 +19,8 @@ export const WorkExperienceBlock: FC = () => {
       <Typography variant="h2" align="left">
         Experiencia Laboral
       </Typography>
-
-      {!displayWorkExperienceData ? (
-        <WorkExperienceFormBlock />
-      ) : (
-        <WorkExperienceDisplayBlock
-          companyName="Apple"
-          position="CEO"
-          from="01/02/1234"
-          to="03/04/5678"
-          onRemove={() => setDisplayWorkExperienceData(false)}
-          onEdit={() => setDisplayWorkExperienceData(false)}
-        />
-      )}
-      
-      <AddBtn
-        label="Agregar Experiencia"
-        onClick={() => setDisplayWorkExperienceData(true)}
-      />
+      {renderBlocks()}
+      <AddBtn label="Agregar Experiencia" onClick={handleAddAction} />
     </Stack>
   );
 };
