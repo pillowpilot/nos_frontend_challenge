@@ -23,6 +23,7 @@ export const SuccessSubmition: FC<SuccessSubmitionProps> = ({
     >
       <Paper
         sx={{
+          margin: 1,
           borderRadius: 2,
           py: 4,
           px: 5,
