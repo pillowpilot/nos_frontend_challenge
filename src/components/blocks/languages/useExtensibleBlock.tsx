@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   LanguagesDisplayBlock,
   LanguagesDisplayBlockProps,
@@ -10,7 +10,7 @@ import {
 
 /**
  * Types definitions
- * 
+ *
  * We use tagged Algebraic Data types to implement pattern matching properly
  * We also add the `key` field for rendering (to avoid the react unique key per component error)
  */
@@ -52,6 +52,35 @@ export const useExtensibleBlock = () => {
   const [props, setProps] = useState<BlockProps[]>([{ tag: "form", key: 1 }]);
   const [nextUniqueKey, setNextUniqueKey] = useState<number>(2);
 
+  /**
+   * In each callback (like onRemove) we will need to access an updated version of props
+   * (see Stale State). There are several way to deal with it, one way is with useRef.
+   *
+   * Here we use a simple approach with useState and useEffect.
+   *
+   * First of all, we set an effect on each update of markedForRemove on the same level of props.
+   *
+   * We pass the setMarkedForRemove setter to each callback and went a callback
+   * modifies markedForRemove it also triggers the removal effect.
+   */
+  const [markedForRemove, setMarkedForRemove] = useState<number | undefined>(
+    undefined
+  );
+
+  useEffect(() => {
+    // Protect the effect form undefined
+    if (markedForRemove) {
+      // Make sure there is always at least one element
+      if (props.length === 1) {
+        setProps([{ tag: "form", key: nextUniqueKey }]);
+        setNextUniqueKey(nextUniqueKey + 1);
+      } else {
+        setProps(props.filter((prop) => prop.key !== markedForRemove));
+      }
+      setMarkedForRemove(undefined);
+    }
+  }, [markedForRemove]);
+
   const handleAddAction = () => {
     const lastProp = props[props.length - 1];
 
@@ -63,9 +92,7 @@ export const useExtensibleBlock = () => {
             key: nextUniqueKey,
             language: generateRandomLanguage(),
             level: generateRandomLevel(),
-            onRemove: () => {
-              console.log(`TODO: Remove block with key ${nextUniqueKey}`);
-            },
+            onRemove: () => setMarkedForRemove(nextUniqueKey),
             onEdit: () => {
               console.log(`TODO: Edit block with key ${nextUniqueKey}`);
             },

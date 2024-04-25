@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   WorkExperienceFormBlock,
   WorkExperienceFormBlockProps,
@@ -50,6 +50,36 @@ const generateRandomPosition = () =>
  */
 export const useExtensibleBlock = () => {
   const [props, setProps] = useState<BlockProps[]>([{ tag: "form", key: 1 }]);
+
+  /**
+   * In each callback (like onRemove) we will need to access an updated version of props
+   * (see Stale State). There are several way to deal with it, one way is with useRef.
+   *
+   * Here we use a simple approach with useState and useEffect.
+   *
+   * First of all, we set an effect on each update of markedForRemove on the same level of props.
+   *
+   * We pass the setMarkedForRemove setter to each callback and went a callback
+   * modifies markedForRemove it also triggers the removal effect.
+   */
+  const [markedForRemove, setMarkedForRemove] = useState<number | undefined>(
+    undefined
+  );
+
+  useEffect(() => {
+    // Protect the effect form undefined
+    if (markedForRemove) {
+      // Make sure there is always at least one element
+      if (props.length === 1) {
+        setProps([{ tag: "form", key: nextUniqueKey }]);
+        setNextUniqueKey(nextUniqueKey + 1);
+      } else {
+        setProps(props.filter((prop) => prop.key !== markedForRemove));
+      }
+      setMarkedForRemove(undefined);
+    }
+  }, [markedForRemove]);
+
   const [nextUniqueKey, setNextUniqueKey] = useState<number>(2);
 
   const handleAddAction = () => {
@@ -65,9 +95,7 @@ export const useExtensibleBlock = () => {
             position: generateRandomPosition(),
             from: "01/02/1234",
             to: "01/02/5678",
-            onRemove: () => {
-              console.log(`TODO: Remove block with key ${nextUniqueKey}`);
-            },
+            onRemove: () => setMarkedForRemove(nextUniqueKey),
             onEdit: () => {
               console.log(`TODO: Edit block with key ${nextUniqueKey}`);
             },
