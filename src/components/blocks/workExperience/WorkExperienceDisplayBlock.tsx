@@ -23,7 +23,7 @@ const RowWrapper: FC<RowWrapperProps> = ({ children }) => {
   );
 };
 
-interface WorkExperienceDisplayBlockProps {
+export type WorkExperienceDisplayBlockProps = {
   companyName: string;
   position: string;
   from: string;
