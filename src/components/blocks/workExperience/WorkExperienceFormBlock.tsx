@@ -4,7 +4,7 @@ import { TextInput } from "../../inputs/TextInput";
 import { DateInput } from "../../inputs/DateInput";
 import { InputBlock } from "../InputBlock";
 
-export type WorkExperienceFormBlockProps = Record<string, never>;
+export type WorkExperienceFormBlockProps = object;
 
 export const WorkExperienceFormBlock: FC<WorkExperienceFormBlockProps> = () => {
   return (

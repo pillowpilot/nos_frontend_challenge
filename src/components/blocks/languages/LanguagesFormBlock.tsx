@@ -3,7 +3,7 @@ import { FC } from "react";
 import { CustomSelect } from "../../selects/CustomSelect";
 import { InputBlock } from "../InputBlock";
 
-export type LanguagesFormBlockProps = Record<string, never>;
+export type LanguagesFormBlockProps = object;
 
 export const LanguagesFormBlock: FC<LanguagesFormBlockProps> = () => {
   return (
