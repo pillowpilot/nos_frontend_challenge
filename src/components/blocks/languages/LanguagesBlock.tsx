@@ -1,11 +1,10 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { Stack, Typography } from "@mui/material";
-import { LanguagesFormBlock } from "./LanguagesFormBlock";
-import { LanguagesDisplayBlock } from "./LanguagesDisplayBlock";
 import { AddBtn } from "../../buttons/AddBtn";
+import { useExtensibleBlock } from "./useExtensibleBlock";
 
 export const LanguagesBlock: FC = () => {
-  const [displayLanguages, setDisplayLanguages] = useState<boolean>(false);
+  const { handleAddAction, renderBlocks } = useExtensibleBlock();
 
   return (
     <Stack
@@ -21,21 +20,9 @@ export const LanguagesBlock: FC = () => {
         Idiomas
       </Typography>
 
-      {!displayLanguages ? (
-        <LanguagesFormBlock />
-      ) : (
-        <LanguagesDisplayBlock
-          language="Alemán"
-          level="Avanzado"
-          onRemove={() => setDisplayLanguages(false)}
-          onEdit={() => setDisplayLanguages(false)}
-        />
-      )}
+      {renderBlocks()}
 
-      <AddBtn
-        label="Agregar Idioma"
-        onClick={() => setDisplayLanguages(true)}
-      />
+      <AddBtn label="Agregar Idioma" onClick={handleAddAction} />
     </Stack>
   );
 };
