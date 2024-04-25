@@ -27,7 +27,7 @@ export const SuccessSubmition: FC<SuccessSubmitionProps> = ({
           borderRadius: 2,
           py: 4,
           px: 5,
-          maxWidth: "339px",
+          maxWidth: "376px",
         }}
       >
         <Stack gap={4}>

@@ -15,7 +15,7 @@ function App() {
   const [submitted, setSubmitted] = useState<boolean>(false);
 
   return (
-    <Stack maxWidth={339}>
+    <Stack maxWidth={376}>
       <SuccessSubmition open={submitted} onAccept={() => setSubmitted(false)} />
       <Navbar />
       <WorkWithUs />
