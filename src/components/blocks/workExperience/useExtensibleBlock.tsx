@@ -1,22 +1,28 @@
 import { useState } from "react";
-import { WorkExperienceFormBlock } from "./WorkExperienceFormBlock";
-import { WorkExperienceDisplayBlock } from "./WorkExperienceDisplayBlock";
+import {
+  WorkExperienceFormBlock,
+  WorkExperienceFormBlockProps,
+} from "./WorkExperienceFormBlock";
+import {
+  WorkExperienceDisplayBlock,
+  WorkExperienceDisplayBlockProps,
+} from "./WorkExperienceDisplayBlock";
 
+/**
+ * Types definitions
+ *
+ * We use tagged Algebraic Data types to implement pattern matching properly
+ * We also add the `key` field for rendering (to avoid the react unique key per component error)
+ */
 type DisplayBlockProps = {
   tag: "display"; // tag to Algebraic Data Type
   key: number;
-  companyName: string;
-  position: string;
-  from: string;
-  to: string;
-  onRemove: () => void;
-  onEdit: () => void;
-};
+} & WorkExperienceDisplayBlockProps;
 
 type FormBlockProps = {
   tag: "form"; // tag to Algebraic Data Type
   key: number;
-};
+} & WorkExperienceFormBlockProps;
 
 type BlockProps = DisplayBlockProps | FormBlockProps;
 

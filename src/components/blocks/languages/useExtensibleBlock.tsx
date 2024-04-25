@@ -1,20 +1,28 @@
 import { useState } from "react";
-import { LanguagesDisplayBlock } from "./LanguagesDisplayBlock";
-import { LanguagesFormBlock } from "./LanguagesFormBlock";
+import {
+  LanguagesDisplayBlock,
+  LanguagesDisplayBlockProps,
+} from "./LanguagesDisplayBlock";
+import {
+  LanguagesFormBlock,
+  LanguagesFormBlockProps,
+} from "./LanguagesFormBlock";
 
+/**
+ * Types definitions
+ * 
+ * We use tagged Algebraic Data types to implement pattern matching properly
+ * We also add the `key` field for rendering (to avoid the react unique key per component error)
+ */
 type DisplayBlockProps = {
-  tag: "display"; // tag to Algebraic Data Type
+  tag: "display"; // tag for Algebraic Data Type
   key: number;
-  language: string;
-  level: string;
-  onRemove: () => void;
-  onEdit: () => void;
-};
+} & LanguagesDisplayBlockProps;
 
 type FormBlockProps = {
-  tag: "form"; // tag to Algebraic Data Type
+  tag: "form"; // tag for Algebraic Data Type
   key: number;
-};
+} & LanguagesFormBlockProps;
 
 type BlockProps = DisplayBlockProps | FormBlockProps;
 
