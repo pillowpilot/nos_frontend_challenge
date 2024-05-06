@@ -24,7 +24,7 @@ export const PersonalDataBlock: FC = () => {
       <InputBlock>
         <TextInput label="Nombre y Apellido" formKey="fullname" />
         <DateInput label="Fecha de Nacimiento" formKey="birthday"/>
-        <PhoneInput label="Número de Celular" />
+        <PhoneInput label="Número de Celular" formKey="cellphone"/>
       </InputBlock>
     </Box>
   );
