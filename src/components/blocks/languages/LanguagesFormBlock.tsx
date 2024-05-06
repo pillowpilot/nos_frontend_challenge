@@ -2,10 +2,19 @@ import { Box } from "@mui/material";
 import { FC } from "react";
 import { CustomSelect } from "../../selects/CustomSelect";
 import { InputBlock } from "../InputBlock";
+import { useLanguageData } from "./useLanguageData";
 
-export type LanguagesFormBlockProps = object;
+export type LanguagesFormBlockProps = {
+  languageFormKey: string;
+  levelFormKey: string;
+};
 
-export const LanguagesFormBlock: FC<LanguagesFormBlockProps> = () => {
+export const LanguagesFormBlock: FC<LanguagesFormBlockProps> = ({
+  languageFormKey,
+  levelFormKey,
+}) => {
+  const { languageOptions, levelOptions } = useLanguageData();
+
   return (
     <Box
       sx={{
@@ -17,43 +26,15 @@ export const LanguagesFormBlock: FC<LanguagesFormBlockProps> = () => {
       <InputBlock>
         <CustomSelect
           label="Idioma"
+          formKey={languageFormKey}
           placeholder="Selecciona un Idioma"
-          options={[
-            {
-              value: "es",
-              label: "Español",
-            },
-            {
-              value: "en",
-              label: "Inglés",
-            },
-            {
-              value: "pt",
-              label: "Portugués",
-            },
-            {
-              value: "de",
-              label: "Alemán",
-            },
-          ]}
+          options={languageOptions}
         />
         <CustomSelect
           label="Nivel"
+          formKey={levelFormKey}
           placeholder="Selecciona un Nivel"
-          options={[
-            {
-              value: "basico",
-              label: "Básico",
-            },
-            {
-              value: "intermedio",
-              label: "Intermedio",
-            },
-            {
-              value: "avanzado",
-              label: "Avanzado",
-            },
-          ]}
+          options={levelOptions}
         />
       </InputBlock>
     </Box>
