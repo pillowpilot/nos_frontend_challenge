@@ -45,6 +45,9 @@ export const SuccessSubmition: FC<SuccessSubmitionProps> = ({
             <Typography variant="h1" align="center">
               Tu postulación fue enviada con éxito
             </Typography>
+            <Typography align="center">
+              Los datos del formulario estan en la consola!
+            </Typography>
           </Stack>
           <AcceptBtn onClick={onAccept} />
         </Stack>
