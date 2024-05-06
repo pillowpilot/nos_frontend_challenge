@@ -1,12 +1,19 @@
 import { FC } from "react";
 import { Box, TextField, Typography } from "@mui/material";
+import { Controller, useFormContext } from "react-hook-form";
 
 interface TextInputProps {
   label: string;
+  formKey: string;
   placeholder?: string;
 }
 
-export const TextInput: FC<TextInputProps> = ({ label, placeholder = "" }) => {
+export const TextInput: FC<TextInputProps> = ({
+  label,
+  formKey
+}) => {
+  const { control } = useFormContext();
+
   const setBorderStyles = {
     "& .MuiOutlinedInput-notchedOutline": {
       borderRadius: "8px",
@@ -29,11 +36,19 @@ export const TextInput: FC<TextInputProps> = ({ label, placeholder = "" }) => {
       <Typography variant="h3" align="left">
         {label}
       </Typography>
-      <TextField
-        variant="outlined"
-        placeholder={placeholder}
-        sx={{
-          ...setBorderStyles,
+      <Controller
+        name={formKey}
+        control={control}
+        render={({field}) => {
+          return (
+            <TextField
+              variant="outlined"
+              {...field}
+              sx={{
+                ...setBorderStyles,
+              }}
+            />
+          );
         }}
       />
     </Box>
