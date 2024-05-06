@@ -46,8 +46,8 @@ const useFormatter = () => {
     data.workExperience.forEach((experience) => {
       result += `Compañia: ${experience.companyName}.\n`;
       result += `Puesto: ${experience.position}.\n`;
-      result += `Desde: .\n`;
-      result += `Hasta: .\n`;
+      result += `Desde: ${experience.from}.\n`;
+      result += `Hasta: ${experience.to}.\n`;
     });
     return result;
   };
