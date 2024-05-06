@@ -1,12 +1,16 @@
-import { Box, Typography } from "@mui/material";
-import { DateField } from "@mui/x-date-pickers";
 import { FC } from "react";
+import { Controller, useFormContext } from "react-hook-form";
+import { DateField } from "@mui/x-date-pickers";
+import { Box, Typography } from "@mui/material";
 
 interface DateInputProps {
   label: string;
+  formKey: string;
 }
 
-export const DateInput: FC<DateInputProps> = ({ label }) => {
+export const DateInput: FC<DateInputProps> = ({ label, formKey }) => {
+  const { control } = useFormContext();
+
   const setBorderStyles = {
     "& .MuiOutlinedInput-notchedOutline": {
       borderRadius: "8px",
@@ -29,10 +33,12 @@ export const DateInput: FC<DateInputProps> = ({ label }) => {
       <Typography variant="h3" align="left">
         {label}
       </Typography>
-      <DateField
-        sx={{
-          ...setBorderStyles,
-        }}
+      <Controller
+        control={control}
+        name={formKey}
+        render={({ field }) => (
+          <DateField {...field} sx={{ ...setBorderStyles }} format="DD/MM/YYYY"/>
+        )}
       />
     </Box>
   );
