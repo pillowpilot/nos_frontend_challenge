@@ -13,7 +13,7 @@ import { SuccessSubmition } from "./components/popup/SuccessSubmition";
 import "./App.css";
 
 type WorkExperienceFields = {
-  companyName: string;
+  company: string;
   position: string;
   from: string;
   to: string;
@@ -30,6 +30,7 @@ type FormFields = {
   cellphone: string;
   workExperience: WorkExperienceFields[];
   language: LanguageFields[];
+  cvfile: string;
 };
 
 const useFormatter = () => {
@@ -44,7 +45,7 @@ const useFormatter = () => {
   const formatWorkExperience = (data: FormFields): string => {
     let result = "";
     data.workExperience.forEach((experience) => {
-      result += `Compañia: ${experience.companyName}.\n`;
+      result += `Compañia: ${experience.company}.\n`;
       result += `Puesto: ${experience.position}.\n`;
       result += `Desde: ${experience.from}.\n`;
       result += `Hasta: ${experience.to}.\n`;
@@ -61,20 +62,34 @@ const useFormatter = () => {
     return result;
   };
 
-  return { formatPersonalData, formatWorkExperience, formatLanguages };
+  const formatResume = (data: FormFields): string => {
+    return data.cvfile;
+  };
+
+  return {
+    formatPersonalData,
+    formatWorkExperience,
+    formatLanguages,
+    formatResume,
+  };
 };
 
 function App() {
   const methods = useForm<FormFields>();
   const [submitted, setSubmitted] = useState<boolean>(false);
-  const { formatPersonalData, formatWorkExperience, formatLanguages } =
-    useFormatter();
+  const {
+    formatPersonalData,
+    formatWorkExperience,
+    formatLanguages,
+    formatResume,
+  } = useFormatter();
 
   const onSubmit: SubmitHandler<FormFields> = (data) => {
     console.log(data);
     console.log(formatPersonalData(data));
     console.log(formatWorkExperience(data));
     console.log(formatLanguages(data));
+    console.log(formatResume(data));
     setSubmitted(true);
   };
 
